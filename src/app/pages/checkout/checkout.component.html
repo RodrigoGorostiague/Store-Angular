@@ -1,0 +1,71 @@
+<div class="Conteiner">
+<div class="conteiner">
+  <form class="item form" (ngSubmit)="onSubmit(checkoutForm)" #checkoutForm="ngForm">
+    <mat-form-field class="form__element" floatPlaceholder="Nombre">
+      <input matInput
+      placeholder="Nombre"
+      required
+      [(ngModel)]="model.name"
+      name="name"
+      #name="ngModel">
+      <mat-error *ngIf="name.valid || name.pristine">El campo es obligatorio</mat-error>
+    </mat-form-field>
+
+    <mat-radio-group class="form__element">
+      <p>Escoja una opcion</p>
+        <mat-radio-button value="pickUp" (change)="onPickUpOrDelivery(false)">Recoger</mat-radio-button>
+        <mat-radio-button value="delivery" (change)="onPickUpOrDelivery(true)" checked>Enviar</mat-radio-button>
+    </mat-radio-group>
+    <ng-container *ngIf="isDelivery; else showStore">
+    <mat-form-field class="form__element" floatPlaceholder="Direccion">
+          <input matInput
+                [(ngModel)]="model.shippingAddress"
+                name="shippingAddress"
+                #shippingAddress="ngModel"
+                 type="text"
+                 required
+                 placeholder="Direccion">
+    <mat-error *ngIf="shippingAddress.valid || shippingAddress.pristine">El campo es obligatoria</mat-error>
+    </mat-form-field>
+
+
+    <mat-form-field class="form__element" floatPlaceholder="Ciudad">
+          <input matInput
+                [(ngModel)]="model.city"
+                name="city"
+                #city="ngModel"
+                 type="text"
+                 required
+                 placeholder="Ciudad">
+    <mat-error *ngIf="city.valid || city.pristine">El campo es obligatoria</mat-error>
+    </mat-form-field>
+  </ng-container>
+
+  <ng-template #showStore>
+    <mat-form-field class="form__element">
+      <mat-label>Sucursal</mat-label>
+          <mat-select
+          [(ngModel)]="model.store"
+          name="store"
+          #store="ngModel"
+          required
+          >
+              <mat-option [value]="tienda" *ngFor="let tienda of stores">
+                {{tienda.name}} - {{tienda.openingHours}}
+              </mat-option>
+          </mat-select>
+    </mat-form-field>
+
+
+
+  </ng-template>
+  <app-details></app-details>
+  <div class="conteiner__button">
+    <button [disabled]="!checkoutForm.form.valid" mat-raised-button color="primary" type="submit">
+      Checkout
+    </button>
+  </div>
+
+  </form>
+</div>
+</div>

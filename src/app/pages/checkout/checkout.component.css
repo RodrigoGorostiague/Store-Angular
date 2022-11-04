@@ -1,0 +1,32 @@
+.conteiner{
+  display: flex;
+  align-items: center;
+  padding: 1rem 5rem;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  border: solid black 0.1px;
+  border-radius: 100px;
+  box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
+}
+.item{
+  flex: 1 1 auto;
+}
+.form{
+  width: 100%;
+}
+button{
+  width: 100%;
+}
+.form__element{
+  padding: 5px 0px 25px 2px;
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+.conteiner__button{
+  margin: 0 auto;
+  display: flex;
+  width: 60%;
+  margin-top: 4rem;
+
+}
